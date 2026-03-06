@@ -1,0 +1,39 @@
+public class Main {
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        System.out.println("Input: \"42\" -> Output: " + sol.myAtoi("42"));
+        System.out.println("Input: \"   -042\" -> Output: " + sol.myAtoi("   -042"));
+        System.out.println("Input: \"1337c0d3\" -> Output: " + sol.myAtoi("1337c0d3"));
+        System.out.println("Input: \"0-1\" -> Output: " + sol.myAtoi("0-1"));
+        System.out.println("Input: \"words and 987\" -> Output: " + sol.myAtoi("words and 987"));
+        System.out.println("Input: \"-91283472332\" -> Output: " + sol.myAtoi("-91283472332")); 
+    }
+}
+class Solution {
+    public int myAtoi(String s) {
+        if (s == null || s.isEmpty()) return 0;
+        int n = s.length();
+        int i = 0;
+        int sign = 1;
+        int result = 0;
+        while (i < n && s.charAt(i) == ' ') {
+            i++;
+        }
+        if (i == n) return 0;
+        char firstChar = s.charAt(i);
+        if (firstChar == '+' || firstChar == '-') {
+            sign = (firstChar == '-') ? -1 : 1;
+            i++;
+        }
+        while (i < n && Character.isDigit(s.charAt(i))) {
+            int digit = s.charAt(i) - '0';
+            if (result > Integer.MAX_VALUE / 10 || 
+               (result == Integer.MAX_VALUE / 10 && digit > Integer.MAX_VALUE % 10)) {
+                return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+            result = result * 10 + digit;
+            i++;
+        }
+        return result * sign;
+    }
+}
