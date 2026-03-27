@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line = br.readLine();
+        if (line == null) return;   
+        StringTokenizer st = new StringTokenizer(line);
+        int t = Integer.parseInt(st.nextToken());
+        while (t-- > 0) {
+            line = br.readLine();
+            if (line == null) break;
+            st = new StringTokenizer(line);
+            int n = Integer.parseInt(st.nextToken());
+            int[] a = new int[n];
+            int[] b = new int[n];
+            st = new StringTokenizer(br.readLine());
+            for (int i = 0; i < n; i++) {
+                a[i] = Integer.parseInt(st.nextToken());
+            }
+            st = new StringTokenizer(br.readLine());
+            for (int i = 0; i < n; i++) {
+                b[i] = Integer.parseInt(st.nextToken());
+            }
+            int left = 0;
+            while (left < n && a[left] == b[left]) {
+                left++;
+            }
+            if (left == n) {
+                System.out.println(0);
+                continue;
+            }
+            int right = n - 1;
+            while (right >= 0 && a[right] == b[right]) {
+                right--;
+            }
+            System.out.println(right - left + 1);
+        }
+    }
+}
