@@ -1,0 +1,24 @@
+import java.util.*;
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);     
+        if (!sc.hasNextInt()) return;
+        int t = sc.nextInt();   
+        while (t-- > 0) {
+            String s = sc.next();
+            System.out.println(getMaxPalindromes(s));
+        }
+        sc.close();
+    }
+    public static int getMaxPalindromes(String s) {
+        int[] counts = new int[26];
+        for (char c : s.toCharArray()) {
+            counts[c - 'a']++;
+        }    
+        int totalPalindromes = 0;
+        for (int count : counts) {
+            totalPalindromes += (count / 2);
+        }   
+        return totalPalindromes;
+    }
+}
