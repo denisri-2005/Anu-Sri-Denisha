@@ -1,0 +1,27 @@
+public class Solution {
+    public int strStr(String haystack, String needle) {
+        if (needle.isEmpty()) {
+            return 0;
+        }
+        int hLen = haystack.length();
+        int nLen = needle.length();
+        for (int i = 0; i <= hLen - nLen; i++) {
+            if (haystack.substring(i, i + nLen).equals(needle)) {
+                return i; 
+            }
+        }
+        return -1; 
+    }
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        String h1 = "sadbutsad";
+        String n1 = "sad";
+        System.out.println("Example 1 Output: " + sol.strStr(h1, n1)); 
+        String h2 = "leetcode";
+        String n2 = "leeto";
+        System.out.println("Example 2 Output: " + sol.strStr(h2, n2));
+        String h3 = "hello";
+        String n3 = "ll";
+        System.out.println("Extra Case Output: " + sol.strStr(h3, n3)); 
+    }
+}
